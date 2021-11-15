@@ -1,0 +1,7 @@
+su -c starira_res
+selinux_state='su -c getenforce'
+if [ "$selinux_state" = "Enforcing" ]; then
+	su -c starira_online
+else
+	starira_online
+fi

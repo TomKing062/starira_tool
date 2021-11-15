@@ -1,0 +1,36 @@
+pause()
+{
+#	echo press any key to continue
+#	read -n 1
+	echo pause function is disabled
+}
+
+for var in $(cat /sdcard/Pictures/strr_banner.txt);
+do
+	pause
+	am start -a android.intent.action.VIEW -d https://cdn.starira.xyz/api/assets/jp/res_ja/res/banner/$var
+done
+
+for var in $(cat /sdcard/Pictures/strr_event.txt);
+do
+	pause
+	am start -a android.intent.action.VIEW -d https://cdn.starira.xyz/api/assets/jp/res_ja/res/event_permanent/banner/$var
+done
+
+for var in $(cat /sdcard/Pictures/strr_gacha.txt);
+do
+	pause
+	am start -a android.intent.action.VIEW -d https://cdn.starira.xyz/api/assets/jp/res_ja/res/gacha/background/$var
+done
+
+for var in $(cat /sdcard/Pictures/strr_card.txt);
+do
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/dress/$var?global=1
+done
+
+for var in $(cat /sdcard/Pictures/strr_story.txt);
+do
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/adventure/$var?global=1
+done

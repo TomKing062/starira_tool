@@ -1,0 +1,69 @@
+strr_ls_30min()
+{
+	for var in $(find $1 -mmin -30);
+	do
+		var=${var##*/}
+		var=${var/%pvr/png}
+		echo $var>>/sdcard/Pictures/strr_$2.txt;
+	done
+}
+
+strr_ls_1day()
+{
+	for var in $(find $1 -mtime -1);
+	do
+		var=${var##*/}
+		var=${var/%pvr/png}
+		echo $var>>/sdcard/Pictures/strr_$2.txt;
+	done
+}
+
+find /sdcard/Pictures -mmin -1 >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+	alias strr_ls=strr_ls_30min
+else
+	busybox find /sdcard/Pictures -mmin -1 >/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		alias find='busybox find'
+		alias strr_ls=strr_ls_30min
+	else
+		alias strr_ls=strr_ls_1day
+	fi
+fi
+
+rm /sdcard/Pictures/*.txt
+
+game_lang=$(ls /data/data/jp.co.atm.smile.ww/files/download/patch|grep res_)
+strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/banner/ banner
+strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/event_permanent/banner/ event
+strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/gacha/background/ gacha
+strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/src/Master/Data/Scenario/ story_raw
+
+for adventure in $(cat /sdcard/Pictures/strr_story_raw.txt|grep -v ^3);
+do
+	adventure=${adventure/%.luac/}
+	echo $adventure>>/sdcard/Pictures/strr_story.txt
+done
+
+for adventure in $(cat /sdcard/Pictures/strr_story_raw.txt|grep ^3);
+do
+	adventure=${adventure/%.luac/}
+	dress_list="$dress_list ${adventure:2:7}"
+done
+
+for card in {$dress_list};
+do
+	dress_list=${dress_list#*$card}
+	isuniq=yes
+	for dress in {$dress_list}; do
+		if [ "$dress" = "$card" ]; then
+			isuniq=no
+			break
+		fi
+	done
+	if [ "$isuniq" = "yes" ]; then
+		echo $card>>/sdcard/Pictures/strr_card.txt
+	fi
+done
+
+rm /sdcard/Pictures/strr_story_raw.txt
