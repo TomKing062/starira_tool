@@ -27,6 +27,14 @@ for var in $(cat /sdcard/Pictures/strr_card.txt);
 do
 	pause
 	am start -a android.intent.action.VIEW -d https://karth.top/dress/$var?global=1
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/api/adventure/ww/30${var}1.json
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/api/adventure/ww/30${var}2.json
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/api/adventure/ww/31${var}1.json
+	pause
+	am start -a android.intent.action.VIEW -d https://karth.top/api/adventure/ww/31${var}2.json
 done
 
 for var in $(cat /sdcard/Pictures/strr_story.txt);
