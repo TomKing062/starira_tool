@@ -3,6 +3,7 @@ strr_ls_30min()
 	for var in $(find $1 -mmin -30);
 	do
 		var=${var##*/}
+		var=${var/%.luac/}
 		var=${var/%pvr/png}
 		echo $var>>/sdcard/Pictures/strr_$2.txt;
 	done
@@ -13,6 +14,7 @@ strr_ls_1day()
 	for var in $(find $1 -mtime -1);
 	do
 		var=${var##*/}
+		var=${var/%.luac/}
 		var=${var/%pvr/png}
 		echo $var>>/sdcard/Pictures/strr_$2.txt;
 	done
@@ -39,16 +41,14 @@ strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/event_
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/gacha/background/ gacha
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/src/Master/Data/Scenario/ story_raw
 
-for adventure in $(cat /sdcard/Pictures/strr_story_raw.txt|grep -v ^3);
+for var in $(cat /sdcard/Pictures/strr_story_raw.txt|grep -v ^3|sort);
 do
-	adventure=${adventure/%.luac/}
-	echo $adventure>>/sdcard/Pictures/strr_story.txt
+	echo $var>>/sdcard/Pictures/strr_story.txt
 done
 
-for adventure in $(cat /sdcard/Pictures/strr_story_raw.txt|grep ^3);
+for var in $(cat /sdcard/Pictures/strr_story_raw.txt|grep ^3);
 do
-	adventure=${adventure/%.luac/}
-	dress_list="$dress_list ${adventure:2:7}"
+	dress_list="$dress_list ${var:2:7}"
 done
 
 for card in {$dress_list};

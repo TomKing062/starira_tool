@@ -9,4 +9,4 @@ start https://karth.top/api/adventure/ww/30%%i2.json
 start https://karth.top/api/adventure/ww/31%%i1.json
 start https://karth.top/api/adventure/ww/31%%i2.json
 )
-for /f %%i in ('type emulator_share\strr_story.txt') do (start https://karth.top/adventure/%%i?global=1)
+for /f %%i in ('type emulator_share\strr_story.txt') do (start https://karth.top/api/adventure/ww/%%i.json)
