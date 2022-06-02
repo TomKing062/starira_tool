@@ -41,10 +41,7 @@ strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/event_
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/gacha/background/ gacha
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/src/Master/Data/Scenario/ story_raw
 
-for var in $(cat /sdcard/Pictures/strr_story_raw.txt|grep -v ^3|sort);
-do
-	echo $var>>/sdcard/Pictures/strr_story.txt
-done
+cat /sdcard/Pictures/strr_story_raw.txt|grep -v ^3|sort>/sdcard/Pictures/strr_story.txt
 
 for var in $(cat /sdcard/Pictures/strr_story_raw.txt|grep ^3);
 do
