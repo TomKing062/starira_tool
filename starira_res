@@ -35,7 +35,7 @@ fi
 
 rm /sdcard/Pictures/*.txt
 
-game_lang=$(ls /data/data/jp.co.atm.smile.ww/files/download/patch|grep res_)
+game_lang=$(ls /data/data/jp.co.atm.smile.ww/files/download/patch|grep ^res_)
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/banner/ banner
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/event_permanent/banner/ event
 strr_ls /data/data/jp.co.atm.smile.ww/files/download/patch/$game_lang/res/gacha/background/ gacha
